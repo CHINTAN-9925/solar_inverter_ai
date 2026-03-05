@@ -1,0 +1,40 @@
+# Next.js
+.next/
+out/
+node_modules/
+.swc/
+
+# Flask/Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+.env/
+*.sqlite
+*.db
+
+# Machine Learning
+# Data and models
+data/
+models/
+checkpoints/
+*.pkl
+*.joblib
+*.sav
+*.h5
+*.onnx
+
+# Jupyter Notebook specific files
+.ipynb_checkpoints/
+
+# Environment variables and sensitive info
+.env
+.flaskenv
+keys/
+
+# IDE/OS Specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
