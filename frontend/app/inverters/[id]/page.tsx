@@ -1,5 +1,4 @@
 'use client'
-import { use } from 'react'
 import Link from 'next/link'
 import Topbar from '../../../components/layout/Topbar'
 import TrendChart from '../../../components/dashboard/TrendChart'
@@ -11,11 +10,11 @@ import { useInverterDetail, useWaterfall } from '../../../hooks/useInverterDetai
 import { getRiskConfig, formatScore, fromNow } from '../../../lib/utils'
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
 export default function InverterDetailPage({ params }: PageProps) {
-  const { id } = use(params)
+  const { id } = params
   const { summary, prediction, isLoading, isError } = useInverterDetail(id)
   const { entries: waterfall, isLoading: wfLoading } = useWaterfall(id)
 
