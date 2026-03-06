@@ -1,53 +1,53 @@
 import type { InverterSummary, KpiData, PredictionResponse, ExplainResponse, QueryResponse, TrendPoint, TrendMetric, WaterfallEntry, ShapFeature } from './types'
 import { MOCK_INVERTERS, MOCK_KPI, getMockPrediction, getMockTrend, getMockWaterfall } from './mock'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5001'
 
 export async function fetchInverters(): Promise<InverterSummary[]> {
-  console.log('[API] fetchInverters — using mock data')
-  return [...MOCK_INVERTERS].sort((a, b) => b.risk_score - a.risk_score)
+  // console.log('[API] fetchInverters — using mock data')
+  // return [...MOCK_INVERTERS].sort((a, b) => b.risk_score - a.risk_score)
 
   // BACKEND READY:
-  // const res = await fetch(`${API_URL}/api/inverters`)
-  // return res.json()
+  const res = await fetch(`${API_URL}/api/inverters`)
+  return res.json()
 }
 
 export async function fetchKpi(): Promise<KpiData> {
-  console.log('[API] fetchKpi — using mock data')
-  return MOCK_KPI
+  // console.log('[API] fetchKpi — using mock data')
+  // return MOCK_KPI
 
   // BACKEND READY:
-  // const res = await fetch(`${API_URL}/api/inverters/kpi`)
-  // return res.json()
+  const res = await fetch(`${API_URL}/api/inverters/kpi`)
+  return res.json()
 }
 
 export async function fetchInverterDetail(id: string): Promise<{ summary: InverterSummary; prediction: PredictionResponse }> {
-  console.log(`[API] fetchInverterDetail(${id}) — using mock data`)
-  const summary = MOCK_INVERTERS.find(i => i.inverter_id === id) ?? MOCK_INVERTERS[0]
-  const prediction = getMockPrediction(id)
-  return { summary, prediction }
+  // console.log(`[API] fetchInverterDetail(${id}) — using mock data`)
+  // const summary = MOCK_INVERTERS.find(i => i.inverter_id === id) ?? MOCK_INVERTERS[0]
+  // const prediction = getMockPrediction(id)
+  // return { summary, prediction }
 
   // BACKEND READY:
-  // const res = await fetch(`${API_URL}/api/inverters/${id}`)
-  // return res.json()
+  const res = await fetch(`${API_URL}/api/inverters/${id}`)
+  return res.json()
 }
 
 export async function fetchTrend(id: string, metric: TrendMetric): Promise<{ points: TrendPoint[] }> {
-  console.log(`[API] fetchTrend(${id}, ${metric}) — using mock data`)
-  return { points: getMockTrend(metric) }
+  // console.log(`[API] fetchTrend(${id}, ${metric}) — using mock data`)
+  // return { points: getMockTrend(metric) }
 
   // BACKEND READY:
-  // const res = await fetch(`${API_URL}/api/inverters/${id}/trend?metric=${metric}`)
-  // return res.json()
+  const res = await fetch(`${API_URL}/api/inverters/${id}/trend?metric=${metric}`)
+  return res.json()
 }
 
 export async function fetchWaterfall(id: string): Promise<{ entries: WaterfallEntry[] }> {
-  console.log(`[API] fetchWaterfall(${id}) — using mock data`)
-  return { entries: getMockWaterfall(id) }
+  // console.log(`[API] fetchWaterfall(${id}) — using mock data`)
+  // return { entries: getMockWaterfall(id) }
 
   // BACKEND READY:
-  // const res = await fetch(`${API_URL}/api/explain/waterfall/${id}`)
-  // return res.json()
+  const res = await fetch(`${API_URL}/api/explain/waterfall/${id}`)
+  return res.json()
 }
 
 export async function postExplain(inverter_id: string, risk_score: number, shap_features: ShapFeature[]): Promise<ExplainResponse> {
